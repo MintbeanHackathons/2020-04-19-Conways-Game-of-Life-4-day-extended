@@ -10,10 +10,12 @@ const Container = styled.div`
   // background-color: red;
 `;
 
-export default function Grid() {
+export default function Grid(grid) {
+  console.log("this is the grid", grid.grid.flat());
+  const flatGrid = grid.grid.flat();
   const squareList = [];
   for (let i = 0; i < 100; i++) {
-    squareList.push(<Square />);
+    squareList.push(<Square key={i} status={flatGrid[i]} />);
   }
   return <Container>{squareList}</Container>;
 }

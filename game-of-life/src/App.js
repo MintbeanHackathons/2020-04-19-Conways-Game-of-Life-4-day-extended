@@ -3,6 +3,8 @@ import "./App.css";
 import Grid from "./components/Grid";
 import styled from "styled-components";
 
+import useGridData from "./hooks/useGridData";
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -14,9 +16,10 @@ const Container = styled.div`
 `;
 
 function App() {
+  const { grid } = useGridData();
   return (
     <Container>
-      <Grid />;
+      <Grid grid={grid} />;
     </Container>
   );
 }
