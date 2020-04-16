@@ -9,8 +9,7 @@ import Board from './components/Board';
 // Any dead cell touching exactly three alive neighbours becomes alive.
 
 //number of rows/columns
-const boardRows = 100;
-const boardColumns = 100;
+const size = 40;
 
 //cellInitialStatus returns random true/false value to identify alive/dead statuses
 //and it's the default value for the argument
@@ -19,10 +18,10 @@ const generateBoardStatus = (
 ) => {
 	const grid = [];
 	//generating the rows
-	for (let row = 0; row < boardRows; row++) {
+	for (let row = 0; row < size; row++) {
 		grid[row] = [];
 		//generating the columns and associating the cell status with it
-		for (let column = 0; column < boardColumns; column++) {
+		for (let column = 0; column < size; column++) {
 			grid[row][column] = cellInitialStatus();
 		}
 	} //end of for loop
@@ -58,9 +57,9 @@ function App() {
 
 			const isCellOnBoard =
 				rowPosition >= 0 &&
-				rowPosition < boardRows &&
+				rowPosition < size &&
 				columnPosition >= 0 &&
-				columnPosition < boardColumns;
+				columnPosition < size;
 
 			if (
 				aliveCells < 4 &&
@@ -78,8 +77,8 @@ function App() {
 		//having to do this due to JS not allowing clone of multidimensional arrays
 		let clonedBoard = JSON.parse(JSON.stringify(boardStatus));
 
-		for (let r = 0; r < boardRows; r++) {
-			for (let c = 0; c < boardColumns; c++) {
+		for (let r = 0; r < size; r++) {
+			for (let c = 0; c < size; c++) {
 				const totalAliveCells = aliveCells(r, c);
 				if (!boardStatus[r][c]) {
 					if (totalAliveCells === 3) clonedBoard[r][c] = true;
@@ -105,11 +104,7 @@ function App() {
 			<div className="container">
 				<h2 className="title">Conway's Game of Life - Mintbean </h2>
 
-				<Board
-					boardStatus={boardStatus}
-					boardRows={boardRows}
-					boardColumns={boardColumns}
-				/>
+				<Board boardStatus={boardStatus} size={size} />
 			</div>
 		</div>
 	);
