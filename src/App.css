@@ -1,17 +1,6 @@
-table {
-	margin: 0 auto 20px auto;
-	border-collapse: collapse;
-	background-color: white;
-}
-
-td {
-	width: 15px;
-	height: 15px;
-	border: 1px solid darkGray;
-}
-
-.alive {
-	background-color: black;
+.canvas-container {
+	margin: auto;
+	width: 70%;
 }
 
 .App {

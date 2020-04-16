@@ -30,16 +30,17 @@ function Board(props) {
 	useEffect(() => {
 		const context = canvasRef.current.getContext('2d');
 		setCtx(context);
-	});
+	}, []);
 
 	const generateCanvas = () => {
-		console.log(ctx);
+		const height = props.boardRows * 20;
+		const width = props.boardColumns * 20;
 
 		if (ctx !== undefined) {
 			ctx.strokeStyle = '#e1e1e1';
 			ctx.fillStyle = 'cadetblue';
 
-			ctx.clearRect(0, 0, 1512, 512);
+			ctx.clearRect(0, 0, height, width);
 			for (let row = 0; row < props.boardRows; row++) {
 				for (let column = 0; column < props.boardColumns; column++) {
 					ctx.beginPath();
@@ -49,7 +50,11 @@ function Board(props) {
 			}
 		}
 
-		return <canvas ref={canvasRef} width="1512" height="1512" />;
+		return (
+			<div className="canvas-container">
+				<canvas ref={canvasRef} width={width} height={height} />
+			</div>
+		);
 	};
 
 	const finalGrid = generateCanvas();

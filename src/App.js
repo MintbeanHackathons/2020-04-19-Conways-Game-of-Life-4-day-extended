@@ -9,8 +9,8 @@ import Board from './components/Board';
 // Any dead cell touching exactly three alive neighbours becomes alive.
 
 //number of rows/columns
-const boardRows = 50;
-const boardColumns = 50;
+const boardRows = 100;
+const boardColumns = 100;
 
 //cellInitialStatus returns random true/false value to identify alive/dead statuses
 //and it's the default value for the argument
@@ -102,12 +102,15 @@ function App() {
 
 	return (
 		<div className="App">
-			<h2>Conway's Game of Life - Mintbean </h2>
-			<Board
-				boardStatus={boardStatus}
-				boardRows={boardRows}
-				boardColumns={boardColumns}
-			/>
+			<div className="container">
+				<h2 className="title">Conway's Game of Life - Mintbean </h2>
+
+				<Board
+					boardStatus={boardStatus}
+					boardRows={boardRows}
+					boardColumns={boardColumns}
+				/>
+			</div>
 		</div>
 	);
 }
