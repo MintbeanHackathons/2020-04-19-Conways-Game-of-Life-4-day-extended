@@ -1,119 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
+import Square from "./GridItem";
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(10, 2vw);
   text-align: center;
-`;
-
-const Square = styled.a`
-  border: 1px solid black;
+  // background-color: red;
 `;
 
 export default function Grid() {
-  return (
-    <Container>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-      <Square>x</Square>
-    </Container>
-  );
+  const squareList = [];
+  for (let i = 0; i < 100; i++) {
+    squareList.push(<Square />);
+  }
+  return <Container>{squareList}</Container>;
 }

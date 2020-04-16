@@ -6,8 +6,11 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  align-content: center;
-  margin-top: 10vw;
+  align-items: center;
+  // padding: 10vw;
+  background-color: blue;
+  height: 100vh;
+  margin: 0;
 `;
 
 function App() {
