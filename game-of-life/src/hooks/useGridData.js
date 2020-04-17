@@ -1,58 +1,126 @@
 import { useEffect, useState } from "react";
 // import { useImmer } from "use-immer";
 
-export default function useGridData() {
-  const initializeGrid = () => {
-    let grid = [];
-    for (let row = 0; row < 10; row++) {
-      const newRow = [];
-      for (let column = 0; column < 10; column++) {
-        if (
-          (row === 4 && column === 4) ||
-          (row === 5 && column === 5) ||
-          (row === 6 && (column === 3 || column === 4 || column === 5))
-        ) {
-          newRow.push(true);
-        } else {
-          newRow.push(false);
-        }
-      }
-      grid.push(newRow);
+const initializeGrid = () => {
+  let grid = [];
+  for (let row = 0; row < 10; row++) {
+    const newRow = [];
+    for (let column = 0; column < 10; column++) {
+      // if (
+      //   (row === 4 && column === 4) ||
+      //   (row === 5 && column === 5) ||
+      //   (row === 6 && (column === 3 || column === 4 || column === 5))
+      // ) {
+      //   newRow.push(true);
+      // } else {
+      newRow.push(false);
+      // }
     }
-    return grid;
-  };
+    grid.push(newRow);
+  }
+  grid[4][4] = true;
+  grid[5][5] = true;
+  grid[6][3] = true;
+  grid[6][4] = true;
+  grid[6][5] = true;
 
+  return grid;
+};
+
+const checkNeighbourSquares = (grid, x, y) => {
+  let aliveNeighbours = 0;
+  if (x - 1 >= 0) {
+    if (grid[x - 1][y] === true) {
+      aliveNeighbours++;
+    }
+  }
+  if (x - 1 >= 0 && y - 1 >= 0) {
+    if (grid[x - 1][y - 1] === true) {
+      aliveNeighbours++;
+    }
+  }
+  if (y - 1 >= 0) {
+    if (grid[x][y - 1] === true) {
+      aliveNeighbours++;
+    }
+  }
+  if (x + 1 < 10 && y - 1 >= 0) {
+    if (grid[x + 1][y - 1] === true) {
+      aliveNeighbours++;
+    }
+  }
+  if (x + 1 < 10) {
+    if (grid[x + 1][y] === true) {
+      aliveNeighbours++;
+    }
+  }
+  if (x + 1 < 10 && y + 1 < 10) {
+    if (grid[x + 1][y + 1] === true) {
+      aliveNeighbours++;
+    }
+  }
+  if (y + 1 < 10) {
+    if (grid[x][y + 1] === true) {
+      aliveNeighbours++;
+    }
+  }
+  if (x - 1 >= 0 && y + 1 < 10) {
+    if (grid[x - 1][y + 1] === true) {
+      aliveNeighbours++;
+    }
+  }
+  return aliveNeighbours;
+};
+
+const actOnDead = (grid, x, y) => {
+  if (checkNeighbourSquares(grid, x, y) === 3) {
+    return true;
+  }
+  return false;
+};
+
+const actOnAlive = (grid, x, y) => {
+  const aliveNeighbours = checkNeighbourSquares(grid, x, y);
+  if (aliveNeighbours < 2 || aliveNeighbours >= 4) {
+    return false;
+  }
+  return true;
+};
+
+const scanGrid = (grid) => {
+  const copyGrid = JSON.parse(JSON.stringify(grid));
+  const newGrid = JSON.parse(JSON.stringify(grid));
+  for (let row = 0; row < 10; row++) {
+    for (let column = 0; column < 10; column++) {
+      if (copyGrid[row][column] === true) {
+        newGrid[row][column] = actOnAlive(copyGrid, row, column);
+      } else {
+        newGrid[row][column] = actOnDead(copyGrid, row, column);
+      }
+    }
+  }
+  return newGrid;
+  // console.log("old grid\n", this.grid);
+  // console.log("\nnew grid\n", newGrid);
+};
+
+// const updateGrid = (oldGrid, data) => {
+//   const copyGrid = JSON.parse(JSON.stringify(oldGrid));
+//   const newGrid = JSON.parse(JSON.stringify(oldGrid));
+//   // newGrid[4][4] = true;
+//   // newGrid[5][5] = true;
+//   // newGrid[6][3] = true;
+//   // newGrid[6][4] = true;
+//   // newGrid[6][5] = true;
+//   // return newGrid;
+// };
+
+export default function useGridData() {
   const [grid, setGrid] = useState(initializeGrid());
-  console.log(grid);
-  // const newUpdate = [
-  //   [4, 4],
-  //   [5, 5],
-  //   [6, 5],
-  //   [6, 4],
-  //   [6, 3],
-  // ];
 
-  // const updateSquares = (update) => {
-  //   updateGrid((draft) => {
-  //     for (let i = 0; i < update[0].length; i++) {}
-  //   });
-  // };
+  useEffect(() => {
+    setGrid(scanGrid(grid));
+  }, []);
 
-  //   useEffect(() => {
-  //     setGrid([
-  //       ...grid,
-  //       (grid[4][4] = true),
-  //       (grid[5][5] = true),
-  //       (grid[6][5] = true),
-  //       (grid[6][4] = true),
-  //       (grid[6][3] = true),
-  //     ]);
-  //   }, []);
   return { grid };
 }
-
-// this.grid[4][4] = true;
-// this.grid[5][5] = true;
-// this.grid[6][5] = true;
-// this.grid[6][4] = true;
-// this.grid[6][3] = true;
