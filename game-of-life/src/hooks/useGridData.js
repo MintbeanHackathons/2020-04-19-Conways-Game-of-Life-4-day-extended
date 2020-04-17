@@ -70,10 +70,6 @@ const checkNeighbourSquares = (grid, x, y) => {
 };
 
 const actOnDead = (grid, x, y) => {
-  // if (checkNeighbourSquares(grid, x, y) === 3) {
-  //   return true;
-  // }
-  // return false;
   return checkNeighbourSquares(grid, x, y) === 3;
 };
 
@@ -96,20 +92,7 @@ const scanGrid = (grid) => {
     }
   }
   return newGrid;
-  // console.log("old grid\n", this.grid);
-  // console.log("\nnew grid\n", newGrid);
 };
-
-// const updateGrid = (oldGrid, data) => {
-//   const copyGrid = JSON.parse(JSON.stringify(oldGrid));
-//   const newGrid = JSON.parse(JSON.stringify(oldGrid));
-//   // newGrid[4][4] = true;
-//   // newGrid[5][5] = true;
-//   // newGrid[6][3] = true;
-//   // newGrid[6][4] = true;
-//   // newGrid[6][5] = true;
-//   // return newGrid;
-// };
 
 export default function useGridData() {
   const [grid, setGrid] = useState(initializeGrid());
