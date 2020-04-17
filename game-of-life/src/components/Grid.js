@@ -11,11 +11,9 @@ const Container = styled.div`
 `;
 
 export default function Grid(grid) {
-  console.log("this is the grid", grid.grid.flat());
-  const flatGrid = grid.grid.flat();
-  const squareList = [];
-  for (let i = 0; i < 100; i++) {
-    squareList.push(<Square key={i} status={flatGrid[i]} />);
-  }
+  const squareList = grid.grid
+    .flat()
+    .map((curr, i) => <Square key={i} status={curr} />);
+
   return <Container>{squareList}</Container>;
 }
