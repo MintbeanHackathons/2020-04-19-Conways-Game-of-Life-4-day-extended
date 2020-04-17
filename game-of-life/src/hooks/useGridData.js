@@ -18,11 +18,16 @@ const initializeGrid = () => {
     }
     grid.push(newRow);
   }
+  grid[4][0] = true;
+  grid[4][1] = true;
+  grid[4][2] = true;
+  grid[4][3] = true;
   grid[4][4] = true;
-  grid[5][5] = true;
-  grid[6][3] = true;
-  grid[6][4] = true;
-  grid[6][5] = true;
+  grid[4][5] = true;
+  grid[4][6] = true;
+  grid[4][7] = true;
+  grid[4][8] = true;
+  grid[4][9] = true;
 
   return grid;
 };
@@ -119,8 +124,9 @@ export default function useGridData() {
   const [grid, setGrid] = useState(initializeGrid());
 
   useEffect(() => {
-    setGrid(scanGrid(grid));
-  }, []);
+    const interval = setInterval(() => setGrid(scanGrid(grid)), 1000);
 
+    return () => clearInterval(interval);
+  }, [grid]);
   return { grid };
 }
