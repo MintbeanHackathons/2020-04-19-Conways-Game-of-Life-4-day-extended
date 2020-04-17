@@ -76,7 +76,7 @@ const actOnDead = (grid, x, y) => {
 const actOnAlive = (grid, x, y) => {
   const aliveNeighbours = checkNeighbourSquares(grid, x, y);
 
-  return aliveNeighbours < 2 || aliveNeighbours >= 4 ? false : true;
+  return !(aliveNeighbours < 2 || aliveNeighbours >= 4);
 };
 
 const scanGrid = (grid) => {
