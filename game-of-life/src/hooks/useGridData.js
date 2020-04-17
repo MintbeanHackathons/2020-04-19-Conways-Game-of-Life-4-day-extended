@@ -6,15 +6,7 @@ const initializeGrid = () => {
   for (let row = 0; row < 10; row++) {
     const newRow = [];
     for (let column = 0; column < 10; column++) {
-      // if (
-      //   (row === 4 && column === 4) ||
-      //   (row === 5 && column === 5) ||
-      //   (row === 6 && (column === 3 || column === 4 || column === 5))
-      // ) {
-      //   newRow.push(true);
-      // } else {
       newRow.push(false);
-      // }
     }
     grid.push(newRow);
   }
@@ -78,18 +70,17 @@ const checkNeighbourSquares = (grid, x, y) => {
 };
 
 const actOnDead = (grid, x, y) => {
-  if (checkNeighbourSquares(grid, x, y) === 3) {
-    return true;
-  }
-  return false;
+  // if (checkNeighbourSquares(grid, x, y) === 3) {
+  //   return true;
+  // }
+  // return false;
+  return checkNeighbourSquares(grid, x, y) === 3;
 };
 
 const actOnAlive = (grid, x, y) => {
   const aliveNeighbours = checkNeighbourSquares(grid, x, y);
-  if (aliveNeighbours < 2 || aliveNeighbours >= 4) {
-    return false;
-  }
-  return true;
+
+  return aliveNeighbours < 2 || aliveNeighbours >= 4 ? false : true;
 };
 
 const scanGrid = (grid) => {
