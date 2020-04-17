@@ -15,11 +15,15 @@ const Container = styled.div`
   margin: 0;
 `;
 
+const Button = styled.button``;
+
 function App() {
-  const { grid } = useGridData();
+  const { grid, nextMove, changeAllMoves } = useGridData();
   return (
     <Container>
-      <Grid grid={grid} />;
+      <Grid grid={grid} />
+      <Button onClick={() => nextMove(grid)}>click me</Button>
+      <Button onClick={() => changeAllMoves()}>Me Too!</Button>
     </Container>
   );
 }

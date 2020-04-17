@@ -94,13 +94,37 @@ const scanGrid = (grid) => {
   return newGrid;
 };
 
+const start = (grid) => {};
+
 export default function useGridData() {
   const [grid, setGrid] = useState(initializeGrid());
+  const [allMoves, setAllMoves] = useState(false);
+
+  const nextMove = (grid) => {
+    setGrid(scanGrid(grid));
+  };
+
+  const changeAllMoves = () => {
+    setAllMoves(!allMoves);
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => setGrid(scanGrid(grid)), 1000);
+    console.log(" all moves", allMoves);
+    if (allMoves) {
+      const interval = setInterval(() => setGrid(scanGrid(grid)), 750);
 
-    return () => clearInterval(interval);
-  }, [grid]);
-  return { grid };
+      return () => clearInterval(interval);
+    }
+  }, [allMoves, grid]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => setGrid(scanGrid(grid)), 1000);
+
+  //   return () => clearInterval(interval);
+  // }, [allMoves, grid]);
+  // const allMoves = (grid) => {
+  //   setInterval(() => {
+  //     nextMove(scanGrid(grid));
+  //   }, 1000);
+  return { grid, nextMove, changeAllMoves };
 }
