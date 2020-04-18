@@ -9,6 +9,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   // padding: 10vw;
   background-color: blue;
   height: 100vh;
@@ -23,9 +24,11 @@ function App() {
     <div>
       <Container>
         <Grid grid={grid} />
+        <div>
+          <Button onClick={() => nextMove(grid)}>click me</Button>
+          <Button onClick={() => changeAllMoves()}>Me Too!</Button>
+        </div>
       </Container>
-      <Button onClick={() => nextMove(grid)}>click me</Button>
-      <Button onClick={() => changeAllMoves()}>Me Too!</Button>
     </div>
   );
 }
