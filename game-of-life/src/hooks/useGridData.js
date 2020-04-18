@@ -1,25 +1,28 @@
 import { useEffect, useState } from "react";
 // import { useImmer } from "use-immer";
 
+const COLUMN = 33;
+const ROW = 23;
+
 const initializeGrid = () => {
   let grid = [];
-  for (let row = 0; row < 10; row++) {
+  for (let row = 0; row < ROW; row++) {
     const newRow = [];
-    for (let column = 0; column < 10; column++) {
+    for (let column = 0; column < COLUMN; column++) {
       newRow.push(false);
     }
     grid.push(newRow);
   }
-  grid[4][0] = true;
-  grid[4][1] = true;
-  grid[4][2] = true;
-  grid[4][3] = true;
-  grid[4][4] = true;
-  grid[4][5] = true;
-  grid[4][6] = true;
-  grid[4][7] = true;
-  grid[4][8] = true;
-  grid[4][9] = true;
+  grid[10][11] = true;
+  grid[10][12] = true;
+  grid[10][13] = true;
+  grid[10][14] = true;
+  grid[10][15] = true;
+  grid[10][16] = true;
+  grid[10][17] = true;
+  grid[10][18] = true;
+  grid[10][19] = true;
+  grid[10][20] = true;
 
   return grid;
 };
@@ -41,27 +44,28 @@ const checkNeighbourSquares = (grid, x, y) => {
       aliveNeighbours++;
     }
   }
-  if (x + 1 < 10 && y - 1 >= 0) {
+  if (x + 1 < ROW && y - 1 >= 0) {
     if (grid[x + 1][y - 1] === true) {
       aliveNeighbours++;
     }
   }
-  if (x + 1 < 10) {
+  if (x + 1 < ROW) {
+    console.log(x, y);
     if (grid[x + 1][y] === true) {
       aliveNeighbours++;
     }
   }
-  if (x + 1 < 10 && y + 1 < 10) {
+  if (x + 1 < ROW && y + 1 < COLUMN) {
     if (grid[x + 1][y + 1] === true) {
       aliveNeighbours++;
     }
   }
-  if (y + 1 < 10) {
+  if (y + 1 < COLUMN) {
     if (grid[x][y + 1] === true) {
       aliveNeighbours++;
     }
   }
-  if (x - 1 >= 0 && y + 1 < 10) {
+  if (x - 1 >= 0 && y + 1 < COLUMN) {
     if (grid[x - 1][y + 1] === true) {
       aliveNeighbours++;
     }
@@ -82,8 +86,8 @@ const actOnAlive = (grid, x, y) => {
 const scanGrid = (grid) => {
   const copyGrid = JSON.parse(JSON.stringify(grid));
   const newGrid = JSON.parse(JSON.stringify(grid));
-  for (let row = 0; row < 10; row++) {
-    for (let column = 0; column < 10; column++) {
+  for (let row = 0; row < ROW; row++) {
+    for (let column = 0; column < COLUMN; column++) {
       if (copyGrid[row][column] === true) {
         newGrid[row][column] = actOnAlive(copyGrid, row, column);
       } else {
@@ -94,7 +98,7 @@ const scanGrid = (grid) => {
   return newGrid;
 };
 
-const start = (grid) => {};
+// const start = (grid) => {};
 
 export default function useGridData() {
   const [grid, setGrid] = useState(initializeGrid());
@@ -109,7 +113,6 @@ export default function useGridData() {
   };
 
   useEffect(() => {
-    console.log(" all moves", allMoves);
     if (allMoves) {
       const interval = setInterval(() => setGrid(scanGrid(grid)), 750);
 

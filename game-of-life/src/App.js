@@ -11,7 +11,7 @@ const Container = styled.div`
   align-items: center;
   // padding: 10vw;
   background-color: blue;
-  height: 80vh;
+  height: 100vh;
   margin: 0;
 `;
 

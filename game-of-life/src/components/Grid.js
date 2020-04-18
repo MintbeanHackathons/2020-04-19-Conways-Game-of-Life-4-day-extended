@@ -5,8 +5,9 @@ import Square from "./GridItem";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(10, 2vw);
-  text-align: center;
+  grid-template-columns: repeat(33, 1fr);
+  grid-template-rows: repeat(23, 1fr);
+  // text-align: center;
   // background-color: red;
 `;
 
