@@ -21,3 +21,5 @@ to run locally
 - implement user made patterns
 - size scaler
 - improve styling ie: coloring and button design
+
+![screen shot](https://github.com/cspraggett/2020-04-19-Conways-Game-of-Life-4-day-extended/blob/master/gif/g-o-l-2020.gif)
