@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 
 import { ROW, COLUMN } from "../constants/constants";
 
-// const COLUMN = 32;
-// const ROW = 23;
-
+// initializeGrid initializes an empty grid and then populates it with a preconfigured
+// pattern.
+// Future versions will replace the manual insertion with a function to allow
+// user customized patterns.
 const initializeGrid = () => {
   let grid = [];
   for (let row = 0; row < ROW; row++) {
@@ -36,6 +37,8 @@ const lessThanBoundry = (x, boundry) => {
   return x < boundry;
 };
 
+// checkNeighbourSquares checks a squares neighbours and counts how
+// many alive squares are next to it.
 const checkNeighbourSquares = (grid, x, y) => {
   let aliveNeighbours = 0;
   if (greaterThanZero(x - 1)) {
@@ -92,6 +95,9 @@ const actOnAlive = (grid, x, y) => {
   return !(aliveNeighbours < 2 || aliveNeighbours >= 4);
 };
 
+// scanGrid scans the grid and updates a deep copy of the grid.
+// Future versions will implement a faster algorithm by scanning only
+// squares that are alive and store a record of dead squares in an object.
 const scanGrid = (grid) => {
   const newGrid = grid.map((curr) => [...curr]);
 
@@ -111,14 +117,17 @@ export default function useGridData() {
   const [grid, setGrid] = useState(initializeGrid());
   const [allMoves, setAllMoves] = useState(false);
 
+  // nextMove updates the screen and state with the next move.
   const nextMove = (grid) => {
     setGrid(scanGrid(grid));
   };
 
+  // changeAllMoves sets a flag for when the start/stop button is pressed.
   const changeAllMoves = () => {
     setAllMoves(!allMoves);
   };
 
+  // This useEffect runs when the start/stop button is pushed.
   useEffect(() => {
     if (allMoves) {
       const interval = setInterval(() => setGrid(scanGrid(grid)), 750);
