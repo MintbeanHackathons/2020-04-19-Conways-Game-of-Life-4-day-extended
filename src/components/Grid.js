@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Square from "./GridItem";
 import { ROW, COLUMN } from "../constants/constants";
 
+// styling for the grid, decided a grid was the best way to contain and organize the
+// displayed grid.
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(${COLUMN}, 1fr);
