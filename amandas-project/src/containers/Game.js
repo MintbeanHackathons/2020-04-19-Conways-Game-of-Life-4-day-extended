@@ -60,7 +60,7 @@ class Game extends React.Component {
     this.setState({
       cells: this.makeCells()
     })
-    this.timeoutHandle = window.setTimeout(() => {
+    this.timeoutHandler = window.setTimeout(() => {
       this.runIteration()
     }, this.state.interval)
   }
@@ -144,6 +144,7 @@ class Game extends React.Component {
         >
           {cells.map(cell => <Cell key={`${cell.x}, ${cell.y}`} x={cell.x} y={cell.y}/>)}
         </div>
+
         <div className='controls'>
           Update every <input value={this.state.interval} onChange={this.handleIntervalChange}/> msec 
           {this.state.isRunning ? 
