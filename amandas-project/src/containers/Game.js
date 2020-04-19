@@ -1,4 +1,5 @@
 import React from 'react'
+import Cell from '../components/Cell'
 
 const CELL_SIZE = 20
 const WIDTH = 400
@@ -35,8 +36,8 @@ class Game extends React.Component {
           cells.push({x,y})
         }
       }
-      return cells
     } 
+    return cells
   }
 
   getElementOffset() {
@@ -44,7 +45,7 @@ class Game extends React.Component {
     const doc = document.documentElement
     return {
       x: (rect.left + window.pageXOffset) - doc.clientLeft,
-      y: (rect.top + window.pageYOffset) - doc.clientTop
+      y: (rect.top + window.pageYOffset) - doc.clientTop,
     }
   }
 
@@ -56,13 +57,14 @@ class Game extends React.Component {
     const y = Math.floor(offsetY / CELL_SIZE)
     if(x >= 0 && x <= this.cols && y >= 0 && y <= this.rows) {
       this.board[y][x] = !this.board[y][x]
-      this.setState({
-        cells: this.makeCells()
-      })
     }
+    this.setState({
+      cells: this.makeCells()
+    })
   }
 
   render() {
+    const { cells } = this.state
     return(
       <div>
         <h1>Amanda's Game of Life</h1>
@@ -70,11 +72,10 @@ class Game extends React.Component {
           className='board' 
           style={{width: WIDTH, height: HEIGHT, backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`}}
           onClick={this.handleClick}
-          ref={n => this.boardRef = n}
+          ref={n => {this.boardRef = n}}
         >
-
+          {cells.map(cell => <Cell key={`${cell.x}, ${cell.y}`} x={cell.x} y={cell.y}/>)}
         </div>
-        {console.log()}
       </div>
     )
   }
