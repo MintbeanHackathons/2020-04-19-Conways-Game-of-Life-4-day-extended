@@ -27,7 +27,7 @@ export default function Button({ grid, nextMove, changeAllMoves }) {
   };
   return (
     <Container>
-      <Buttons onClick={() => nextMove(grid)}>next</Buttons>
+      <Buttons onClick={() => nextMove(grid)}>Next</Buttons>
       <Buttons onClick={() => clicked()}>{text}</Buttons>
     </Container>
   );
