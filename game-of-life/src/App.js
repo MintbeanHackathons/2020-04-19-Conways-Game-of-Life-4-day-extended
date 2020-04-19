@@ -4,6 +4,7 @@ import Grid from "./components/Grid";
 import styled from "styled-components";
 
 import useGridData from "./hooks/useGridData";
+import Button from "./components/Button";
 
 const Container = styled.div`
   display: flex;
@@ -16,15 +17,18 @@ const Container = styled.div`
   margin: 0;
 `;
 
-const Button = styled.button``;
-
 function App() {
   const { grid, nextMove, changeAllMoves } = useGridData();
   return (
     <div>
       <Container>
         <Grid grid={grid} />
-        <div>
+        <Button
+          grid={grid}
+          nextMove={nextMove}
+          changeAllMoves={changeAllMoves}
+        />
+        {/* <div>
           <Button
             style={{ backgroundColor: "orange" }}
             onClick={() => nextMove(grid)}
@@ -32,7 +36,7 @@ function App() {
             Next
           </Button>
           <Button onClick={() => changeAllMoves()}>Start</Button>
-        </div>
+        </div> */}
       </Container>
     </div>
   );
