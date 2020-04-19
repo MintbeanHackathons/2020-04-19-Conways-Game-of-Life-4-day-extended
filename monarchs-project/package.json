@@ -1,5 +1,5 @@
 {
-  "name": "conwaysgameoflife",
+  "name": "@monarchwadia/conways-game-engine",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Monarch Wadia <monarch@zeroprojects.ca>",
