@@ -37,7 +37,6 @@ class Game extends React.Component {
   }
 
   runIteration() {
-    console.log('running interation')
     let newBoard = this.makeEmptyBoard()
     this.board = newBoard
     this.setState({
@@ -46,6 +45,20 @@ class Game extends React.Component {
     this.timeoutHandle = window.setTimeout(() => {
       this.runIteration()
     }, this.state.interval)
+  }
+
+  calculateNeighbors(board, x, y) { // calculates the number of neighbors at x and y
+    let neighbors = 0
+    const dirs = [[-1,-1], [-1,0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]]
+    for(let i = 0; i < dirs.length; i++) {
+      const dir = dirs[i]
+      let y1 = y + dir[0]
+      let x1 = x + dir[1]
+      if(x1 >= 0 && x1 < this.cols && y1 >= 0 && y1 < this.rows && board[y1][x1]) {
+        neighbors++
+      }
+    }
+    return neighbors
   }
 
   handleIntervalChange = event => {
