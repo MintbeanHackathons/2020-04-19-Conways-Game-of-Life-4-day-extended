@@ -11,7 +11,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   // padding: 10vw;
-  background-color: blue;
+  background-color: black;
   height: 100vh;
   margin: 0;
 `;
@@ -25,8 +25,13 @@ function App() {
       <Container>
         <Grid grid={grid} />
         <div>
-          <Button onClick={() => nextMove(grid)}>click me</Button>
-          <Button onClick={() => changeAllMoves()}>Me Too!</Button>
+          <Button
+            style={{ backgroundColor: "orange" }}
+            onClick={() => nextMove(grid)}
+          >
+            Next
+          </Button>
+          <Button onClick={() => changeAllMoves()}>Start</Button>
         </div>
       </Container>
     </div>

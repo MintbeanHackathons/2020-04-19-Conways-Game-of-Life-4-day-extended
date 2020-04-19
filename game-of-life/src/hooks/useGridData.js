@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-// import { useImmer } from "use-immer";
 
-const COLUMN = 33;
+const COLUMN = 32;
 const ROW = 23;
 
 const initializeGrid = () => {
@@ -13,16 +12,16 @@ const initializeGrid = () => {
     }
     grid.push(newRow);
   }
-  grid[10][11] = true;
-  grid[10][12] = true;
-  grid[10][13] = true;
-  grid[10][14] = true;
-  grid[10][15] = true;
-  grid[10][16] = true;
-  grid[10][17] = true;
-  grid[10][18] = true;
-  grid[10][19] = true;
-  grid[10][20] = true;
+  grid[11][11] = true;
+  grid[11][12] = true;
+  grid[11][13] = true;
+  grid[11][14] = true;
+  grid[11][15] = true;
+  grid[11][16] = true;
+  grid[11][17] = true;
+  grid[11][18] = true;
+  grid[11][19] = true;
+  grid[11][20] = true;
 
   return grid;
 };
@@ -98,8 +97,6 @@ const scanGrid = (grid) => {
   return newGrid;
 };
 
-// const start = (grid) => {};
-
 export default function useGridData() {
   const [grid, setGrid] = useState(initializeGrid());
   const [allMoves, setAllMoves] = useState(false);
@@ -120,14 +117,5 @@ export default function useGridData() {
     }
   }, [allMoves, grid]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => setGrid(scanGrid(grid)), 1000);
-
-  //   return () => clearInterval(interval);
-  // }, [allMoves, grid]);
-  // const allMoves = (grid) => {
-  //   setInterval(() => {
-  //     nextMove(scanGrid(grid));
-  //   }, 1000);
   return { grid, nextMove, changeAllMoves };
 }
