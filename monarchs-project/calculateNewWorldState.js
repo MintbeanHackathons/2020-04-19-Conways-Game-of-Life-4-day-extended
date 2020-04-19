@@ -47,7 +47,7 @@ function calculateNewWorldState(oldWorld) {
     // 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
     {
       name: "Reproduction",
-      matcher: (currState, numberOfNeighbours) => currState === OFF && numberOfNeighbours === 2,
+      matcher: (currState, numberOfNeighbours) => currState === OFF && numberOfNeighbours === 3,
       evaluator: () => ON
     }
   ];
