@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 
-const COLUMN = 32;
-const ROW = 23;
+import { ROW, COLUMN } from "../constants/constants";
 
-const upDateGrid = (coords) => {
-  for (const c of coords) {
-  }
-};
+// const COLUMN = 32;
+// const ROW = 23;
 
 const initializeGrid = () => {
   let grid = [];
@@ -96,14 +93,14 @@ const actOnAlive = (grid, x, y) => {
 };
 
 const scanGrid = (grid) => {
-  const copyGrid = JSON.parse(JSON.stringify(grid));
-  const newGrid = JSON.parse(JSON.stringify(grid));
+  const newGrid = grid.map((curr) => [...curr]);
+
   for (let row = 0; row < ROW; row++) {
     for (let column = 0; column < COLUMN; column++) {
-      if (copyGrid[row][column] === true) {
-        newGrid[row][column] = actOnAlive(copyGrid, row, column);
+      if (grid[row][column] === true) {
+        newGrid[row][column] = actOnAlive(grid, row, column);
       } else {
-        newGrid[row][column] = actOnDead(copyGrid, row, column);
+        newGrid[row][column] = actOnDead(grid, row, column);
       }
     }
   }

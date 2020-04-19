@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 import Square from "./GridItem";
+import { ROW, COLUMN } from "../constants/constants";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(32, 1fr);
-  grid-template-rows: repeat(23, 1fr);
-  // text-align: center;
-  // background-color: red;
+  grid-template-columns: repeat(${COLUMN}, 1fr);
+  grid-template-rows: repeat(${ROW}, 1fr);
 `;
 
 export default function Grid(grid) {

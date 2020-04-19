@@ -10,7 +10,7 @@ const Squares = styled.a`
 
 export default function GridItem({ status }) {
   return status ? (
-    <Squares style={{ backgroundColor: "papayawhip" }}>o</Squares>
+    <Squares style={{ backgroundColor: "gold" }}>o</Squares>
   ) : (
     <Squares>x</Squares>
   );

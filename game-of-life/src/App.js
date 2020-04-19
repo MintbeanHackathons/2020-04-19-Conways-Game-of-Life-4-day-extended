@@ -17,26 +17,23 @@ const Container = styled.div`
   margin: 0;
 `;
 
+const Heading = styled.h1`
+  color: red;
+  text-align: center;
+`;
+
 function App() {
   const { grid, nextMove, changeAllMoves } = useGridData();
   return (
     <div>
       <Container>
+        <Heading>Game of Life</Heading>
         <Grid grid={grid} />
         <Button
           grid={grid}
           nextMove={nextMove}
           changeAllMoves={changeAllMoves}
         />
-        {/* <div>
-          <Button
-            style={{ backgroundColor: "orange" }}
-            onClick={() => nextMove(grid)}
-          >
-            Next
-          </Button>
-          <Button onClick={() => changeAllMoves()}>Start</Button>
-        </div> */}
       </Container>
     </div>
   );
