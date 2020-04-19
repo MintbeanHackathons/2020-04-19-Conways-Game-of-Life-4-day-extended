@@ -27,11 +27,28 @@ class Game extends React.Component {
     return board
   }
 
+  makeCells() { // create cells
+    let cells = []
+    for(let y = 0; y < this.rows; y++) { // iterate through rows
+      for(let x = 0; x < this.cols; x++) { // iterate through columns
+        if(this.board[y][x]) {
+          cells.push({x,y})
+        }
+      }
+      return cells
+    } 
+  }
+
   render() {
     return(
       <div>
         <h1>Amanda's Game of Life</h1>
-        <div className='board' style={{width: WIDTH, height: HEIGHT, backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`}}>
+        <div 
+          className='board' 
+          style={{width: WIDTH, height: HEIGHT, backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`}}
+          onClick={this.handleClick}
+          ref={n => this.boardRef = n}
+        >
 
         </div>
         {console.log()}
