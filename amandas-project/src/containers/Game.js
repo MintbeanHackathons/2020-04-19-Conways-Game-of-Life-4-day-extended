@@ -23,12 +23,29 @@ class Game extends React.Component {
     this.setState({
       isRunning: true
     })
+    this.runIteration()
   }
 
   stopGame = () => {
     this.setState({
       isRunning: false
     })
+    if(this.timeoutHandler) {
+      window.clearTimeout(this.timeoutHandler)
+      this.timeoutHandler = null
+    }
+  }
+
+  runIteration() {
+    console.log('running interation')
+    let newBoard = this.makeEmptyBoard()
+    this.board = newBoard
+    this.setState({
+      cells: this.makeCells()
+    })
+    this.timeoutHandle = window.setTimeout(() => {
+      this.runIteration()
+    }, this.state.interval)
   }
 
   handleIntervalChange = event => {
