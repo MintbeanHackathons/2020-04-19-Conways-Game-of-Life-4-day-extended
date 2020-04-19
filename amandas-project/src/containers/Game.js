@@ -19,14 +19,14 @@ class Game extends React.Component {
     isRunning: false
   }
 
-  runGame = () => {
+  runGame = () => { // runs the game 
     this.setState({
       isRunning: true
     })
     this.runIteration()
   }
 
-  stopGame = () => {
+  stopGame = () => { // stops the game
     this.setState({
       isRunning: false
     })
@@ -36,7 +36,7 @@ class Game extends React.Component {
     }
   }
 
-  runIteration() {
+  runIteration() { // runs the game based on rules and a time interval
     let newBoard = this.makeEmptyBoard()
 
     for(let y = 0; y < this.rows; y++) {
@@ -108,7 +108,7 @@ class Game extends React.Component {
     return cells
   }
 
-  getElementOffset() {
+  getElementOffset() { // calculates the position of board element
     const rect = this.boardRef.getBoundingClientRect()
     const doc = document.documentElement
     return {
@@ -117,7 +117,7 @@ class Game extends React.Component {
     }
   }
 
-  handleClick = event => {
+  handleClick = event => { // handles board clicks
     const elemOffset = this.getElementOffset()
     const offsetX = event.clientX - elemOffset.x
     const offsetY = event.clientY - elemOffset.y
