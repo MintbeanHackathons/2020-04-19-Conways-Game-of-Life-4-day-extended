@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 const COLUMN = 32;
 const ROW = 23;
 
+const upDateGrid = (coords) => {
+  for (const c of coords) {
+  }
+};
+
 const initializeGrid = () => {
   let grid = [];
   for (let row = 0; row < ROW; row++) {
@@ -26,45 +31,53 @@ const initializeGrid = () => {
   return grid;
 };
 
+const greaterThanZero = (x) => {
+  return x >= 0;
+};
+
+const lessThanBoundry = (x, boundry) => {
+  return x < boundry;
+};
+
 const checkNeighbourSquares = (grid, x, y) => {
   let aliveNeighbours = 0;
-  if (x - 1 >= 0) {
+  if (greaterThanZero(x - 1)) {
     if (grid[x - 1][y] === true) {
       aliveNeighbours++;
     }
   }
-  if (x - 1 >= 0 && y - 1 >= 0) {
+  if (greaterThanZero(x - 1) && greaterThanZero(y - 1)) {
     if (grid[x - 1][y - 1] === true) {
       aliveNeighbours++;
     }
   }
-  if (y - 1 >= 0) {
+  if (greaterThanZero(y - 1)) {
     if (grid[x][y - 1] === true) {
       aliveNeighbours++;
     }
   }
-  if (x + 1 < ROW && y - 1 >= 0) {
+  if (lessThanBoundry(x + 1, ROW) && greaterThanZero(y - 1, 0)) {
     if (grid[x + 1][y - 1] === true) {
       aliveNeighbours++;
     }
   }
-  if (x + 1 < ROW) {
+  if (lessThanBoundry(x + 1, ROW)) {
     console.log(x, y);
     if (grid[x + 1][y] === true) {
       aliveNeighbours++;
     }
   }
-  if (x + 1 < ROW && y + 1 < COLUMN) {
+  if (lessThanBoundry(x + 1, ROW) && lessThanBoundry(y + 1, COLUMN)) {
     if (grid[x + 1][y + 1] === true) {
       aliveNeighbours++;
     }
   }
-  if (y + 1 < COLUMN) {
+  if (lessThanBoundry(y + 1, COLUMN)) {
     if (grid[x][y + 1] === true) {
       aliveNeighbours++;
     }
   }
-  if (x - 1 >= 0 && y + 1 < COLUMN) {
+  if (greaterThanZero(x - 1) && lessThanBoundry(y + 1, COLUMN)) {
     if (grid[x - 1][y + 1] === true) {
       aliveNeighbours++;
     }
