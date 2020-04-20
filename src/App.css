@@ -1,0 +1,43 @@
+.App {
+  margin: 50px;
+  justify-content: center;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(90, 20px)
+}
+
+.active{
+  width: 20px;
+  height: 20px;
+  border: solid 2px black;
+  background-color: red
+}
+.inactive{
+  width: 20px;
+  height: 20px;
+  border: solid 2px black;
+  background-color:gray
+}
+
+.header{
+  padding: 10px;
+  text-align: center;
+  background-color:rgb(255, 175, 176);
+  border: solid 3px black;
+}
+
+body{
+  background-color: rgb(224, 224, 224);
+}
+
+.title{
+  font-size: 3em;
+  font-weight: 100;
+  font-family: monospace;
+}
+
+.button{
+  padding: 20px 100px;
+  border: solid 1px black;
+  font-size: 2em
+}
