@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import produce from "immer";
 
 import "./App.css";
@@ -34,7 +34,7 @@ function App() {
   const runningRef = useRef()
   runningRef.current = running
 
-  const runSimulation = useCallback(() => {
+  const runSimulation = useEffect(() => {
     if (!runningRef.current) {
       return;
     }
