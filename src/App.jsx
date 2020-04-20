@@ -22,6 +22,7 @@ const generate = () => {
   for (let i = 0; i < numRows; i++) {
     rows.push(Array.from(Array(numCols), () => 0))
   }
+  
 
   return rows;
 };
@@ -62,6 +63,22 @@ function App() {
 
     setTimeout(runSimulation, 200);
   }, []);
+  
+  
+ const createGrid = () => {
+ const newGrid = produce(grid, gridCopy => {
+     gridCopy[i][k] = grid[i][k] ? 0 : 1;
+        });
+      setGrid(newGrid);
+}
+ 
+ const initGame = () => {
+   setRunning(!running);
+            if (!running) {
+              runningRef.current = true
+              runSimulation();
+            }
+          }
 
   return (
     <>
@@ -69,13 +86,7 @@ function App() {
         <h1 className="title">GAME OF LIFE</h1>
         <button
           className="button"
-          onClick={() => {
-            setRunning(!running);
-            if (!running) {
-              runningRef.current = true
-              runSimulation();
-            }
-          }}
+          onClick={() => initGame()}
         >
           {running ? "STOP" : "START"}
         </button>
@@ -87,12 +98,7 @@ function App() {
             <div
               className={col ? "active" : "inactive"}
               key={`${i}-${k}`}
-              onClick={() => {
-                const newGrid = produce(grid, gridCopy => {
-                  gridCopy[i][k] = grid[i][k] ? 0 : 1;
-                });
-                setGrid(newGrid);
-              }}
+              onClick={() => createGrid()}
             />
           ))
         )}
