@@ -1,0 +1,15 @@
+@import '~bootstrap/scss/bootstrap';
+
+.square {
+  border: 1px solid black;
+  height: 15px;
+  width: 15px;
+}
+
+.dead {
+  background-color: grey;
+}
+
+.alive {
+  background-color: blue;
+}
