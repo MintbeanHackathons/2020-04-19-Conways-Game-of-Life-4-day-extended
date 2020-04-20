@@ -54,7 +54,7 @@ function App() {
             });
 
             (neighbors < 2 || neighbors > 3) && (gridCopy[i][k] = 0)
-            grid[i][k] === 0 && neighbors === 3 && (gridCopy[i][k] = 1)
+            (grid[i][k] === 0) && (neighbors === 3) && (gridCopy[i][k] = 1)
           }
         }
       })
